@@ -30,6 +30,8 @@ importlib-metadata==4.11.3
 ipython==8.2.0
 jedi==0.18.1
 kiwisolver==1.4.2
+manimlib
+manimce
 Markdown==3.3.6
 matplotlib==3.5.2
 matplotlib-inline==0.1.3
