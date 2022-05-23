@@ -9,6 +9,7 @@ async-timeout==4.0.2
 attrs==21.4.0
 backcall==0.2.0
 cachetools==5.0.0
+CarioSVG==2.5.2
 certifi==2021.10.8
 charset-normalizer==2.0.12
 colorama==0.4.4
