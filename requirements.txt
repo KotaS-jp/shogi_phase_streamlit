@@ -107,7 +107,7 @@ pyzmq
 requests==2.27.1
 requests-oauthlib==1.3.1
 rsa==4.8
-scipy==1.8.0
+scipy
 seaborn==0.11.2
 semver
 Send2Trash
