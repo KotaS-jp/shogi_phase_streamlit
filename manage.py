@@ -37,7 +37,7 @@ from tools.tool import *
 # import pyvips
 # import svgwrite
 
-from cairosvg import svg2png
+# from cairosvg import svg2png
 # import cairo
 # import rsvg
 
@@ -234,7 +234,7 @@ if infer_button:
     svg_img_bytes = bytes(svg_img, "utf-8")
     
 
-    svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
+    # svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
 
     # svg_pyvips_instance = pyvips.Image.svgload_buffer(svg_img_bytes, dpi=200)
     # svg_pyvips_instance.write_to_file('media/documents/x_result.png')
@@ -244,7 +244,8 @@ if infer_button:
     bar.progress(latest_iteration)
 
     right_column.subheader('推論結果: ')
-    right_column.image('media/documents/x_result.png', caption="result", use_column_width=True)
+    # right_column.image('media/documents/x_result.png', caption="result", use_column_width=True)
+    right_column.image(svg_img)
 
 analysis_button = st.sidebar.button("推論途中の経過")
 if analysis_button:
