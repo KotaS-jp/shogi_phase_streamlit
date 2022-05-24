@@ -18,7 +18,7 @@ bleach
 blinker
 cachetools==5.0.0
 cairocffi
-CairoSVG==2.5.2
+# CairoSVG==2.5.2
 certifi==2021.10.8
 cffi
 charset-normalizer==2.0.12
