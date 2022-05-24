@@ -88,8 +88,7 @@ pure-eval==0.2.2
 pyarrow
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-pycairo
-# -e git+https://https://github.com/pygobject/pycairo.git#egg=pygobject_pycairo-1.21.0
+# pycairo
 pyDeprecate==0.3.1
 pycparser
 pydeck
