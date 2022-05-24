@@ -31,8 +31,8 @@ from yolov5 import detect
 from tools.tool import *
 
 # os.environ['path'] += r';C:\Users\skota\Development\projects\SHOGI_PHASE_RECOG_for_streamlit\GTK-for-Windows-Runtime-Environment-Installer\gtk-nsis-pack\bin'#デプロイ時はいらない？
-# import pyvips
-import svgwrite
+import pyvips
+# import svgwrite
 
 from cairosvg import svg2png
 # import cairo
@@ -230,10 +230,11 @@ if infer_button:
     print(type(svg_img))
     svg_img_bytes = bytes(svg_img, "utf-8")
 
-    svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
+    # svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
 
-    # svg_pyvips_instance = pyvips.Image.svgload_buffer(svg_img_bytes)
-    # svg_pyvips_instance.write_to_file("result.png")
+    svg_pyvips_instance = pyvips.Image.svgload_buffer(svg_img_bytes, dpi=200)
+    # svg_pyvips_instance = pyvips.Image.svgload_source(svg_img)
+    svg_pyvips_instance.write_to_file('media/documents/x_result.png')
     
     # dwg = svgwrite.Drawing("media/documents/result.jpg")
     # dwg.add(dwg.image(svg_img, size=(500,600)))
