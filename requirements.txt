@@ -73,7 +73,7 @@ numpy
 oauthlib==3.2.0
 opencv-python-headless==4.5.5.64
 packaging==21.3
-pandas==1.4.2
+pandas
 pandocfilters
 parso==0.8.3
 pickleshare==0.7.5
