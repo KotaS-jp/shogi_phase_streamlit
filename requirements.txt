@@ -46,7 +46,7 @@ grpcio==1.44.0
 idna==3.3
 importlib-metadata==4.11.3
 ipykernel
-ipython==8.2.0
+ipython
 ipython-genutils
 ipywidgets
 jedi==0.18.1
