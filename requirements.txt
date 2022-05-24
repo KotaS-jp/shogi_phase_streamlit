@@ -69,7 +69,7 @@ nbconvert
 nbformat
 nest-asyncio
 notebook
-numpy==1.22.3
+numpy
 oauthlib==3.2.0
 opencv-python-headless==4.5.5.64
 packaging==21.3
