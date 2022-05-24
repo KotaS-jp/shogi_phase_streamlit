@@ -18,6 +18,9 @@ import cshogi
 
 # print('path =', os.getenv('PATH'))
 
+# vipshome = 'c:\\vips-dev-8.7\\bin'
+# os.environ['PATH'] = vipshome + ';' + os.environ['PATH']
+
 import torchmetrics
 from torchmetrics.functional import accuracy
 import pytorch_lightning as pl
@@ -229,17 +232,14 @@ if infer_button:
     print(sfen)
     print(type(svg_img))
     svg_img_bytes = bytes(svg_img, "utf-8")
+    
 
     # svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
 
     svg_pyvips_instance = pyvips.Image.svgload_buffer(svg_img_bytes, dpi=200)
-    # svg_pyvips_instance = pyvips.Image.svgload_source(svg_img)
     svg_pyvips_instance.write_to_file('media/documents/x_result.png')
-    
-    # dwg = svgwrite.Drawing("media/documents/result.jpg")
-    # dwg.add(dwg.image(svg_img, size=(500,600)))
-    # dwg.save()
 
+    
     latest_iteration = 100
     bar.progress(latest_iteration)
 
@@ -261,10 +261,4 @@ if analysis_button:
     yolo_image = P_Image.open("yolov5/runs/detect/exp/x_ban_black_resized.jpg")
     yolo_image_array = np.array(yolo_image)
     right_column2.image(yolo_image_array, caption="", use_column_width=True)
-
-
-
-
-
-
 
