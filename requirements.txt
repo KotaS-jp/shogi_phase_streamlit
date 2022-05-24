@@ -57,6 +57,7 @@ jupyter-core
 jupyterlab-pygments
 jupyterlab-widgets
 kiwisolver==1.4.2
+libcairo2-dev
 Markdown==3.3.6
 MarkupSafe
 matplotlib==3.5.2
