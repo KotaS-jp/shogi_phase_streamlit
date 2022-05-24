@@ -34,7 +34,7 @@ from tools.tool import *
 import pyvips
 # import svgwrite
 
-from cairosvg import svg2png
+# from cairosvg import svg2png
 # import cairo
 # import rsvg
 
