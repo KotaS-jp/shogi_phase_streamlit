@@ -57,7 +57,7 @@ jupyter-core
 jupyterlab-pygments
 jupyterlab-widgets
 kiwisolver==1.4.2
-libcairo2-dev
+libcairo2
 Markdown==3.3.6
 MarkupSafe
 matplotlib==3.5.2
@@ -112,7 +112,7 @@ scipy
 seaborn==0.11.2
 semver
 Send2Trash
-setuptools==59.5.0
+setuptools
 six==1.16.0
 smmap
 soupsieve
@@ -139,7 +139,7 @@ watchdog
 wcwidth==0.2.5
 webencodings
 Werkzeug==2.0.3
-wheel==0.37.1
+wheel
 widgetsnbextension
 whitenoise==6.1.0
 yarl==1.7.2
