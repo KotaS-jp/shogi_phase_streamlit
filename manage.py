@@ -36,7 +36,7 @@ from yolov5 import detect
 from tools.tool import *
 
 # os.environ['path'] += r';C:\Users\skota\Development\projects\SHOGI_PHASE_RECOG_for_streamlit\GTK-for-Windows-Runtime-Environment-Installer\gtk-nsis-pack\bin'#デプロイ時はいらない？
-import pyvips
+# import pyvips
 # import svgwrite
 
 # from cairosvg import svg2png
