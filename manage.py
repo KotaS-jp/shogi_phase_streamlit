@@ -27,6 +27,8 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from scipy.optimize import basinhopping
 
+import base64
+
 from model.model_structure import Net1, Net2
 
 from yolov5 import detect
@@ -34,7 +36,7 @@ from yolov5 import detect
 from tools.tool import *
 
 # os.environ['path'] += r';C:\Users\skota\Development\projects\SHOGI_PHASE_RECOG_for_streamlit\GTK-for-Windows-Runtime-Environment-Installer\gtk-nsis-pack\bin'#デプロイ時はいらない？
-# import pyvips
+import pyvips
 # import svgwrite
 
 # from cairosvg import svg2png
@@ -53,7 +55,7 @@ net2.load_state_dict(torch.load('model/koma1.pt', map_location=torch.device('cpu
 koma_class_list = ["P", "S", "R", "B", "N", "G", "L", "+S", "+N", "+L", "K", "+R", "+P", "+B", "p", "s", "r", "b", "n", "g", "l", "+s", "+n", "+l", "k", "+r", "+p", "+b", "BLANK"]
 
 
-st.title("将棋認識アプリ")
+st.title("将棋の局面認識アプリ")
 
 left_column, right_column = st.columns(2)
 
@@ -61,7 +63,7 @@ left_column, right_column = st.columns(2)
 #sidebar
 # with st.sidebar.container():
 #     st.sidebar.write("")
-st.sidebar.subheader('画像をアップする　☟')
+st.sidebar.subheader('局面画像をアップする　☟')
 uploaded_file = st.sidebar.file_uploader("", type="jpg")
 if uploaded_file is not None:
     image = P_Image.open(uploaded_file)
@@ -231,7 +233,7 @@ if infer_button:
     svg_img = get_phase_svg(sfen)
     # print(sfen)
     # print(type(svg_img))
-    svg_img_bytes = bytes(svg_img, "utf-8")
+    # svg_img_bytes = bytes(svg_img, "utf-8")
     
 
     # svg2png(bytestring=svg_img, write_to='media/documents/x_result.png', output_width=500, output_height=400)
@@ -239,27 +241,36 @@ if infer_button:
     # svg_pyvips_instance = pyvips.Image.svgload_buffer(svg_img_bytes, dpi=200)
     # svg_pyvips_instance.write_to_file('media/documents/x_result.png')
 
-    
+    html1 = get_html(svg_img)
+
     latest_iteration = 100
     bar.progress(latest_iteration)
 
     right_column.subheader('推論結果: ')
     # right_column.image('media/documents/x_result.png', caption="result", use_column_width=True)
-    right_column.image(svg_img)
+    right_column.write(html1, unsafe_allow_html=True)
+
+    st.session_state.key= html1
+
 
 analysis_button = st.sidebar.button("推論途中の経過")
 if analysis_button:
-    right_column.subheader('推論結果: ')#ここでも実行しないと、ボタン押したときに推論結果の画像がUIから消える
-    right_column.image('media/documents/x_result.png', caption="result", use_column_width=True)#ここでも実行しないと、ボタン押したときに推論結果の画像がUIから消える
-    left_column2, right_column2 = st.columns(2)
-    left_column2.subheader('盤抽出位置: ')
-    right_column2.subheader('持ち駒検出（by YOLOv5）: ')
+    if uploaded_file is None:
+        st.sidebar.write("局面の推論が終わってから押してください")
+    
+    else:
+        right_column.subheader('推論結果: ')#ここでも実行しないと、ボタン押したときに推論結果の画像がUIから消える
+        # right_column.image('media/documents/x_result.png', caption="result", use_column_width=True)#ここでも実行しないと、ボタン押したときに推論結果の画像がUIから消える
+        right_column.write(st.session_state.key, unsafe_allow_html=True)#ここでも実行しないと、ボタン押したときに推論結果の画像がUIから消える
+        left_column2, right_column2 = st.columns(2)
+        left_column2.subheader('盤抽出位置: ')
+        right_column2.subheader('持ち駒検出（by YOLOv5）: ')
 
-    ban_image = P_Image.open("media/documents/x_ban_only.jpg")
-    ban_image_array = np.array(ban_image)
-    left_column2.image(ban_image_array, caption="", use_column_width=True)
+        ban_image = P_Image.open("media/documents/x_ban_only.jpg")
+        ban_image_array = np.array(ban_image)
+        left_column2.image(ban_image_array, caption="", use_column_width=True)
 
-    yolo_image = P_Image.open("yolov5/runs/detect/exp/x_ban_black_resized.jpg")
-    yolo_image_array = np.array(yolo_image)
-    right_column2.image(yolo_image_array, caption="", use_column_width=True)
+        yolo_image = P_Image.open("yolov5/runs/detect/exp/x_ban_black_resized.jpg")
+        yolo_image_array = np.array(yolo_image)
+        right_column2.image(yolo_image_array, caption="", use_column_width=True)
 

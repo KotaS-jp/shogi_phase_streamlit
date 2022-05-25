@@ -5,6 +5,7 @@ from scipy.optimize import basinhopping
 from PIL import Image as P_Image
 import math
 import cshogi
+import base64
 
 def fit_size(img, h, w):
     size = img.shape[:2]
@@ -288,6 +289,10 @@ def classList_to_mochiSfen(c_list):
   mochi_sfen += class_to_mochiSfenPiece(p_num, "p")
   return mochi_sfen
 
-
-
+def get_html(svg_image):
+    b64 = base64.b64encode(svg_image.encode("utf-8")).decode("utf-8")
+    css_justify = "center" if True else "left"
+    css = '<p style="text-align:center; display: flex; justify-content: {};">'.format(css_justify)
+    html = r'{}<img src="data:image/svg+xml;base64,{}"/, width=400>'.format(css, b64)
+    return html
 
